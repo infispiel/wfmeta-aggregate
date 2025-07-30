@@ -1,0 +1,1 @@
+from .bagit import bagit
