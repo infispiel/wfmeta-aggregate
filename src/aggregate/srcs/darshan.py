@@ -1,7 +1,9 @@
 from argparse import ArgumentParser
-from .core import srcTemplate
+from typing import Tuple
+from .core import srcType
 
-class darshan(srcTemplate):
+class darshan(srcType):
+    skip: bool = False
     long_name:str = "Darshan"
     description:str = "Metadata collected from Darshan logs."
     argument_prefix: str = "drsh"
@@ -15,9 +17,13 @@ class darshan(srcTemplate):
                             help="Input folder location for darshan metadata.")
         
     @staticmethod
-    def validate_args(args) -> bool:
+    def validate_args(args) -> Tuple[bool, str]:
         if "drsh_ignore" not in args.keys() or args["drsh_ignore"] is False :
             if "drsh_i" not in args.keys() or args["drsh_i"] is None :
-                return False
+                return (False, "error: either drsh_ignore or drsh_i must be provided.")
 
-        return True
+        return (True, "")
+    
+    @staticmethod
+    def should_run(args) -> bool:
+        return not args["drsh_ignore"]
