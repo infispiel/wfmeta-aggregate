@@ -16,7 +16,7 @@ class darshan(srcTemplate):
         
     @staticmethod
     def validate_args(args) -> bool:
-        if "drsh_ignore" not in args.keys() or args["drsh_ignore"] is None :
+        if "drsh_ignore" not in args.keys() or args["drsh_ignore"] is False :
             if "drsh_i" not in args.keys() or args["drsh_i"] is None :
                 return False
 

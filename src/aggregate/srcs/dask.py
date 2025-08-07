@@ -16,7 +16,7 @@ class dask(srcTemplate):
         
     @staticmethod
     def validate_args(args) -> bool:
-        if "dask_ignore" not in args.keys() or args["dask_ignore"] is None :
+        if "dask_ignore" not in args.keys() or args["dask_ignore"] is False :
             if "dask_i" not in args.keys() or args["dask_i"] is None :
                 return False
 

@@ -1,5 +1,5 @@
-import srcs
-import snks
+from . import srcs
+from . import snks
 
 import argparse as ap
 
@@ -21,8 +21,8 @@ def main():
     print(so["dask"].long_name)
 
     parser = create_argparse(so,sk)
-    a = vars(parser.parse_args(["--drsh-ignore", "--dask-ignore"]))
-    print(check_requirements(a, so))
+    args = vars(parser.parse_args())
+    print(check_requirements(args, so))
     
 # TODO: make tests
 def create_argparse(sources: dict[str, type], sinks: dict[str, type]) :
@@ -49,7 +49,3 @@ def check_requirements(args, sources: dict[str, type]) -> bool :
     for (_, sclass) in sources.items() :
         res = res and sclass.validate_args(args)
     return res
-
-if __name__ == "__main__":
-    main()
-
