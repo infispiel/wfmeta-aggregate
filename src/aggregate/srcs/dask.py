@@ -66,4 +66,7 @@ class dask(srcType):
         if not self.wxfer_path.exists():
             raise ValueError("Provided directory does not contain a \"%s\" file: %s" % (self.wxfer_filename, self.data_dir))
 
-        if self.verbose: print("Found all files needed from DASK.")
+        if self.verbose: 
+            print("Found all files needed from DASK.")
+            
+        return True
